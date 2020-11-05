@@ -399,7 +399,7 @@ void calcMac(unsigned char *mac)
 {
     uint16_t crc_value = 0;
     unsigned int chipid[3] = { 0 };   
-    unsigned char buf[6] = {0x02,0x00,0x00,0x00,0x00,0x00};  
+    unsigned char buf[6] = {0x00,0x00,0x00,0x00,0x00,0x00};  
     unsigned char id[30] = {0};    
     
     unsigned char id1[10] = { 0 };
@@ -423,6 +423,8 @@ void calcMac(unsigned char *mac)
     buf[3] =  crc_value & 0xff;
     buf[4] =  crc_value>>8;
     buf[5] =  chipid[0]&0xff;
+
+    dbh("iap mac", buf, 6);
 
     memcpy(mac,buf,6);
 
